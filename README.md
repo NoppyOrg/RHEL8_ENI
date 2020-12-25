@@ -1,8 +1,9 @@
-# RHEL8で複数NIC、複数IPでのNetworkManager設定
+# RHEL8で複数NIC、複数IPでのNetworkManager設定の実機検証結果
 ## 構成
 Linuxでは、OS(カーネル)で複数のルーティングテーブルを用意し、ポリシールールに従い利用するルーティングテーブルを選択できる機能があります(ポリシーベースのルーティング機能)。
 複数ENI構成の場合は、eth1専用にルーティングテーブルを作成し、通信元のIPアドレスがeht1上の場合は、eth1専用のルーティングテーブルを利用するようにポリシーベースのルールで振り分けを行うようにします。
 またネットワーク設定はRHEL8では、NetworkManagerでの設定が基本となるため、NetworkManagerを利用し検証を実施ししました。
+![検証構成概要図](./Documents/architecture.png)
 
 ## 手順
 ### (1)インスタンス作成
@@ -175,10 +176,10 @@ System eth0        5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03  ethernet  eth0
 Wired connection 1 84cdca34-9f7a-3e60-a316-419c5a1e4170  ethernet  eth1  
 ens3               80caddf5-1347-4246-827e-5e0146c7f2c5  ethernet  --
 ```
--既存のConnectionの削除(ens3とWired connection 1の削除)
+- 既存のConnectionの削除(ens3とWired connection 1の削除)
 
-Wired connection 1が不完全な状態で登録されている(/etc/sysconfig/network-scripts/に必要な設定ファイルがない)ことと、不要なens3が存在するため、これらの既存コネクションを削除し再登録を行います。
-これは、eth0はcloud-initによる初期化で設定が追加されていますが、eth1はcloud-initでは追加されず、NetworkManagerがOS起動時にeth1デバイスを自動検知しネットワークを自動設定しているため設定がないものです。
+`Wired connection 1`が不完全な状態で登録されている(`/etc/sysconfig/network-scripts/`に必要な設定ファイルがない)ことと、不要なens3が存在するため、これらの既存コネクションを削除し再登録を行います。
+これは、`eth0`は`cloud-init`による初期化で設定が追加されていますが、`eth1`は`cloud-init`では追加されず、NetworkManagerがOS起動時に`eth1`デバイスを自動検知しネットワークを自動設定しているため設定がないものと想定しております。
 
 ```shell
 sudo nmcli connection delete ens3
@@ -272,7 +273,7 @@ sudo reboot
 
 - セカンダリENIでのセカンダリプライベートIPの追加
 
-<b>注意:</b> `+ipv4.routing-rulesのpriority`は、<b>既存のものと重複しない</b>ようにすること。また<b>既存より小さい番号</b>にすること
+<b>注意:</b> `+ipv4.routing-rules`の`priority`は、<b>既存のものと重複しない</b>ようにすること。また<b>既存より小さい番号</b>にすること
 ```
 
 ```shell

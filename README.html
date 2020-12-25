@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>README.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="rhel8%E3%81%A7%E8%A4%87%E6%95%B0nic%E8%A4%87%E6%95%B0ip%E3%81%A7%E3%81%AEnetworkmanager%E8%A8%AD%E5%AE%9A%E3%81%AE%E5%AE%9F%E6%A9%9F%E6%A4%9C%E8%A8%BC%E7%B5%90%E6%9E%9C">RHEL8で複数NIC、複数IPでのNetworkManager設定の実機検証結果</h1>
+<h2 id="%E6%A7%8B%E6%88%90">構成</h2>
+<p>Linuxでは、OS(カーネル)で複数のルーティングテーブルを用意し、ポリシールールに従い利用するルーティングテーブルを選択できる機能があります(ポリシーベースのルーティング機能)。
+複数ENI構成の場合は、eth1専用にルーティングテーブルを作成し、通信元のIPアドレスがeht1上の場合は、eth1専用のルーティングテーブルを利用するようにポリシーベースのルールで振り分けを行うようにします。
+またネットワーク設定はRHEL8では、NetworkManagerでの設定が基本となるため、NetworkManagerを利用し検証を実施ししました。
+<img src="./Documents/architecture.png" alt="検証構成概要図"></p>
+<h2 id="%E6%89%8B%E9%A0%86">手順</h2>
+<h3 id="1%E3%82%A4%E3%83%B3%E3%82%B9%E3%82%BF%E3%83%B3%E3%82%B9%E4%BD%9C%E6%88%90">(1)インスタンス作成</h3>
+<p>bashとAWS CLIが利用可能な環境でENIを２つアタッチし、それぞれのENIでプライベートIPアドレスを２個持つRHEL8のインスタンスを作成します。</p>
+<ul>
+<li>インスタンス作成に必要なパラメータ設定</li>
+</ul>
+<pre class="hljs"><code><div>インスタンスの作成
+PROFILE="default"                   #AWS CLIのプロファイル指定
+
+KEYNAME="CHANGE_KEY_PAIR_NAME"      #環境に合わせてキーペア名を設定してください。
+INSTANCE_TYPE="t2.micro"
+SUBNETID="subnet-0f749f5bbba38d36c" #環境に合わせてサブネットIDを変更
+SGID="sg-0d9a558782eb72e22"         #環境に合わせてセキュリティーグループIDを変更
+HOSTNAME="rhel8-nic2-test"
+<span class="hljs-meta">  
+#</span><span class="bash">最新のAmazon Linux2のAMI IDを取得します。</span>
+RHEL8_AMIID=$(aws --profile ${PROFILE} --output text \
+    ec2 describe-images \
+        --filters 'Name=name,Values=RHEL-8.?.?_HVM-????????-x86_64-?-Hourly2-GP2' \
+                  'Name=state,Values=available' \
+    --query 'reverse(sort_by(Images, &amp;CreationDate))[:1].ImageId' ) ;
+<span class="hljs-meta">
+#</span><span class="bash">設定内容の確認</span>
+echo -e "KEYNAME      = ${KEYNAME}\nINSTANCE_TYPE= ${INSTANCE_TYPE}\nSUBNETID     = ${SUBNETID}\nSGID         = ${SGID}\nRHEL8_AMIID  = ${RHEL8_AMIID}\nHOSTNAME     = ${HOSTNAME}"
+</div></code></pre>
+<ul>
+<li>インスタンスの起動</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">#</span><span class="bash">インスタンスの作成</span>
+<span class="hljs-meta">#</span><span class="bash">タグ設定</span>
+TAGJSON='
+[    
+    {        
+        "ResourceType": "instance",
+        "Tags": [
+            {
+                "Key": "Name",
+                "Value": "'"${HOSTNAME}"'"
+            }
+        ]
+    }
+]'
+<span class="hljs-meta">
+#</span><span class="bash">ユーザデータ設定(ホスト名の設定)</span>
+USER_DATA='#!/bin/bash -xe
+yum -y update
+hostnamectl set-hostname '"${HOSTNAME}"'
+'
+<span class="hljs-meta">#</span><span class="bash">インターフェース設定(ENIを２つアタッチし、ENIあたり２個のPrivateIPAddressを付与)</span>
+INTERFACE_JSON='[
+  {
+    "DeviceIndex": 0,
+    "DeleteOnTermination": true,
+    "Description": "primary interface",
+    "SubnetId": "'"${SUBNETID}"'",
+    "InterfaceType": "interface",
+    "Groups": [ "'"${SGID}"'" ],
+    "SecondaryPrivateIpAddressCount": 1
+  },
+  {
+    "DeviceIndex": 1,
+    "DeleteOnTermination": true,
+    "Description": "secondary interface",
+    "SubnetId": "'"${SUBNETID}"'",
+    "InterfaceType": "interface",
+    "Groups": [ "'"${SGID}"'" ],
+    "SecondaryPrivateIpAddressCount": 1
+  }
+]'
+<span class="hljs-meta">
+#</span><span class="bash"> サーバの起動</span>
+aws --profile ${PROFILE} \
+    ec2 run-instances \
+        --image-id ${RHEL8_AMIID} \
+        --instance-type ${INSTANCE_TYPE} \
+        --key-name ${KEYNAME} \
+        --network-interfaces "${INTERFACE_JSON}" \
+        --tag-specifications "${TAGJSON}" \
+        --user-data "${USER_DATA}" ;
+作成したインスタンスのネットワーク構成確認
+aws --profile ${PROFILE} \
+    ec2 describe-instances \
+        --filters "Name=tag:Name,Values=${HOSTNAME}" \
+                  "Name=instance-state-name,Values=running" \
+    --query 'sort_by(Reservations[].Instances[].NetworkInterfaces[], &amp;Attachment.DeviceIndex)[].{id:Attachment.DeviceIndex,networkid:NetworkInterfaceId,Mac:MacAddress,PrimIp:PrivateIpAddress,ips:PrivateIpAddresses[].PrivateIpAddress}'
+</div></code></pre>
+<ul>
+<li>実行結果例</li>
+</ul>
+<pre class="hljs"><code><div>[
+    {
+        "id": 0,
+        "networkid": "eni-00f1631b3adf80546",
+        "Mac": "06:5f:be:3b:ed:72",
+        "PrimIp": "10.1.144.246",
+        "ips": [
+            "10.1.144.246",
+            "10.1.151.139"
+        ]
+    },
+    {
+        "id": 1,
+        "networkid": "eni-0ff99886f57aaf9f6",
+        "Mac": "06:60:81:a9:9a:58",
+        "PrimIp": "10.1.144.210",
+        "ips": [
+            "10.1.144.210",
+            "10.1.133.244"
+        ]
+    }
+]
+</div></code></pre>
+<h3 id="2%E6%A7%8B%E6%88%90%E7%A2%BA%E8%AA%8D">(2)構成確認</h3>
+<ul>
+<li>作成したEC2インスタンスに<code>ec2-user</code>でログインする</li>
+<li>ログイン後に、ネットワークインターフェース構成を確認する
+OS(kernel)で認識しているネットワークデバイスを確認する。今回の構成では、以下のようにeth0とeth1の２つのネットワークデバイスが存在することが確認できる。</li>
+</ul>
+<pre class="hljs"><code><div>ls  /sys/class/net/
+eth0  eth1  lo
+</div></code></pre>
+<ul>
+<li>それぞれのデバイスのMACアドレスを確認する</li>
+</ul>
+<pre class="hljs"><code><div>cat /sys/class/net/eth0/address
+06:5f:be:3b:ed:72
+<span class="hljs-meta">
+$</span><span class="bash"> cat /sys/class/net/eth1/address</span>
+06:60:81:a9:9a:58
+</div></code></pre>
+<ul>
+<li>初期状態でOSに付与されているIPアドレスをip address showコマンドで確認する</li>
+</ul>
+<pre class="hljs"><code><div>ip address show
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9001 qdisc fq_codel state UP group default qlen 1000
+    link/ether 06:5f:be:3b:ed:72 brd ff:ff:ff:ff:ff:ff
+    inet 10.1.144.246/19 brd 10.1.159.255 scope global dynamic noprefixroute eth0
+       valid_lft 1934sec preferred_lft 1934sec
+    inet6 fe80::45f:beff:fe3b:ed72/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9001 qdisc fq_codel state UP group default qlen 1000
+    link/ether 06:60:81:a9:9a:58 brd ff:ff:ff:ff:ff:ff
+    inet 10.1.144.210/19 brd 10.1.159.255 scope global dynamic noprefixroute eth1
+       valid_lft 3284sec preferred_lft 3284sec
+    inet6 fe80::ab9f:d1a2:66fc:ddd0/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+</div></code></pre>
+<ul>
+<li>情報のマッピング先ほどのdescribe-instancesのMAC情報と、上記のOSが認識するデバイスのMAC情報から、ENIとOSのデバイスをマッピングすると以下の構成であることが確認できる。</li>
+</ul>
+<table>
+<tr><th colspan=5>aws ec2 describe-instances情報</th><th colspan=2>OS情報</th></tr>
+<tr><th>DeviceID</th><th>Network Interface ID</th><th>Mac</th><th>Primary IP</th><th>2nd IP</th><th>device</th><th>初期に付与されているIP</th></tr>
+<tr><td>0</td><td>eni-00f1631b3adf80546</td><td>06:5f:be:3b:ed:72</td><td>10.1.144.246</td><td>10.1.151.139</td><td>eth0</td><td>10.1.144.246/19</td></tr>
+<tr><td>1</td><td>eni-0ff99886f57aaf9f6</td><td>06:60:81:a9:9a:58</td><td>10.1.144.210</td><td>10.1.133.244</td><td>eth1</td><td>10.1.144.210/19</td></tr>
+</table>
+<h3 id="3networkmanager%E3%81%AB%E3%82%88%E3%82%8Bnic%E3%81%AE%E3%83%87%E3%83%90%E3%82%A4%E3%82%B9%E5%86%8D%E8%A8%AD%E5%AE%9A%E3%81%A8%E3%83%AB%E3%83%BC%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%E8%A8%AD%E5%AE%9A">(3)NetworkManagerによる、NICのデバイス再設定とルーティング設定</h3>
+<p>eth1が不完全な状態のためデバイスの再設定を行う。</p>
+<ul>
+<li>NetworkManagerの状態確認</li>
+</ul>
+<pre class="hljs"><code><div>nmcli connection show
+NAME               UUID                                  TYPE      DEVICE
+System eth0        5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03  ethernet  eth0  
+Wired connection 1 84cdca34-9f7a-3e60-a316-419c5a1e4170  ethernet  eth1  
+ens3               80caddf5-1347-4246-827e-5e0146c7f2c5  ethernet  --
+</div></code></pre>
+<ul>
+<li>既存のConnectionの削除(ens3とWired connection 1の削除)</li>
+</ul>
+<p><code>Wired connection 1</code>が不完全な状態で登録されている(<code>/etc/sysconfig/network-scripts/</code>に必要な設定ファイルがない)ことと、不要なens3が存在するため、これらの既存コネクションを削除し再登録を行います。
+これは、<code>eth0</code>は<code>cloud-init</code>による初期化で設定が追加されていますが、<code>eth1</code>は<code>cloud-init</code>では追加されず、NetworkManagerがOS起動時に<code>eth1</code>デバイスを自動検知しネットワークを自動設定しているため設定がないものと想定しております。</p>
+<pre class="hljs"><code><div>sudo nmcli connection delete ens3
+sudo nmcli connection delete 'Wired connection 1'
+
+mcli connection show
+NAME        UUID                                 TYPE     DEVICE
+System eth0 5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03 ethernet eth0
+</div></code></pre>
+<ul>
+<li>eth1の再設定(ルーティングも合わせて設定)</li>
+</ul>
+<pre class="hljs"><code><div>SECOND_ENI_PRIM_IP="10.1.144.210"
+SECOND_ENI_PRIM_IP_MASKBIT="19"
+SUBNET_NETADDRESS="10.1.128.0/19"
+SUBNET_GWADDR="10.1.128.1"
+
+sudo nmcli connection add type ethernet ifname eth1 con-name eth1 \
+    ipv4.addresses ${SECOND_ENI_PRIM_IP}/${SECOND_ENI_PRIM_IP_MASKBIT}  \
+    ipv4.routes "${SUBNET_NETADDRESS}  0.0.0.0 table=1000, 0.0.0.0/0 ${SUBNET_GWADDR} table=1000" \
+    ipv4.routing-rules "priority 32000 from ${SECOND_ENI_PRIM_IP} lookup 1000"
+</div></code></pre>
+<ul>
+<li>設定の確認</li>
+</ul>
+<pre class="hljs"><code><div>nmcli connection show
+NAME        UUID                                 TYPE     DEVICE
+System eth0 5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03 ethernet eth0
+eth1        524d63a5-eea3-4cee-b30d-11a9c7adacfd ethernet eth1
+</div></code></pre>
+<pre class="hljs"><code><div>ip address
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9001 qdisc fq_codel state UP group default qlen 1000
+    link/ether 06:5f:be:3b:ed:72 brd ff:ff:ff:ff:ff:ff
+    inet 10.1.144.246/19 brd 10.1.159.255 scope global dynamic noprefixroute eth0
+       valid_lft 3313sec preferred_lft 3313sec
+    inet6 fe80::45f:beff:fe3b:ed72/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9001 qdisc fq_codel state UP group default qlen 1000
+    link/ether 06:60:81:a9:9a:58 brd ff:ff:ff:ff:ff:ff
+    inet 10.1.144.210/19 brd 10.1.159.255 scope global noprefixroute eth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::d201:b5b:6a90:c40c/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+</div></code></pre>
+<pre class="hljs"><code><div>ip route show
+default via 10.1.128.1 dev eth0 proto dhcp metric 100
+default via 10.1.128.1 dev eth1 proto dhcp metric 101
+10.1.128.0/19 dev eth0 proto kernel scope link src 10.1.144.246 metric 100
+10.1.128.0/19 dev eth1 proto kernel scope link src 10.1.144.210 metric 101
+ip route show table 1000 &lt;==追加された新しいルーティングテーブル
+default       via 10.1.128.1 dev eth1 proto static metric 101
+10.1.128.0/19                dev eth1 proto static scope link metric 101
+</div></code></pre>
+<pre class="hljs"><code><div>ip rule show
+0:        from all lookup local
+32000:    from 10.1.144.210 lookup 1000  &lt;==追加されたルール
+32766:    from all lookup main
+32767:    from all lookup default
+</div></code></pre>
+<h3 id="4%E3%82%BB%E3%82%AB%E3%83%B3%E3%83%80%E3%83%AA%E3%83%97%E3%83%A9%E3%82%A4%E3%83%99%E3%83%BC%E3%83%88ip%E3%82%A2%E3%83%89%E3%83%AC%E3%82%B9%E8%BF%BD%E5%8A%A0">(4)セカンダリプライベートIPアドレス追加</h3>
+<p>それぞれのENIに、２つ目以降のプライベートIPアドレスを追加設定します。</p>
+<ul>
+<li>PrimaryのENIでのセカンダリプライベートIPの追加</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-meta">#</span><span class="bash">add 2nd ip address to the Prima ENI.</span>
+PRIMARY_ENI_NM_CONNECTION_NAME="System eth0"
+PRIMARY_ENI_2ND_IP="10.1.151.139"
+PRIMARY_ENI_2ND_IP_MASKBIT="19"
+sudo nmcli connection modify "${PRIMARY_ENI_NM_CONNECTION_NAME}" \
+    +ipv4.addresses ${PRIMARY_ENI_2ND_IP}
+<span class="hljs-meta">
+#</span><span class="bash">設定の反映のためリブート(dhcpとの組み合わせだとリブートしないと上手く動作しない模様)</span>
+sudo reboot
+</div></code></pre>
+<ul>
+<li>セカンダリENIでのセカンダリプライベートIPの追加</li>
+</ul>
+<p><b>注意:</b> <code>+ipv4.routing-rules</code>の<code>priority</code>は、<b>既存のものと重複しない</b>ようにすること。また<b>既存より小さい番号</b>にすること</p>
+<pre class="hljs"><code><div>
+```shell
+#add 2nd ip address to the 2nd ENI
+SECOND_ENI_NM_CONNECTION_NAME=&quot;eth1&quot;
+SECOND_ENI_2ND_IP=&quot;10.1.133.244&quot;
+SECOND_ENI_2ND_IP_MASKBIT=&quot;19&quot;
+sudo nmcli connection modify &quot;${SECOND_ENI_NM_CONNECTION_NAME}&quot; \
+    +ipv4.addresses ${SECOND_ENI_2ND_IP}/${SECOND_ENI_2ND_IP_MASKBIT} \
+    +ipv4.routing-rules &quot;priority 31999 from ${SECOND_ENI_2ND_IP} lookup 1000&quot;
+
+#設定の反映
+sudo nmcli connection down &quot;${SECOND_ENI_NM_CONNECTION_NAME}&quot;
+sudo nmcli connection up   &quot;${SECOND_ENI_NM_CONNECTION_NAME}&quot;
+</div></code></pre>
+<ul>
+<li>設定の確認</li>
+</ul>
+<pre class="hljs"><code><div>ip address
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9001 qdisc fq_codel state UP group default qlen 1000
+    link/ether 06:5f:be:3b:ed:72 brd ff:ff:ff:ff:ff:ff
+    inet 10.1.151.139/32 scope global noprefixroute eth0
+       valid_lft forever preferred_lft forever
+    inet 10.1.144.246/19 brd 10.1.159.255 scope global dynamic noprefixroute eth0
+       valid_lft 3175sec preferred_lft 3175sec
+    inet6 fe80::45f:beff:fe3b:ed72/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth1: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 9001 qdisc fq_codel state UP group default qlen 1000
+    link/ether 06:60:81:a9:9a:58 brd ff:ff:ff:ff:ff:ff
+    inet 10.1.144.210/19 brd 10.1.159.255 scope global noprefixroute eth1
+       valid_lft forever preferred_lft forever
+    inet 10.1.133.244/19 brd 10.1.159.255 scope global secondary noprefixroute eth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::71b7:8ea9:428c:b1b8/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+</div></code></pre>
+<pre class="hljs"><code><div>ip rule show
+0:     from all lookup local
+31999: from 10.1.133.244 lookup 1000
+32000: from 10.1.144.210 lookup 1000
+32766: from all lookup main
+32767: from all lookup default
+</div></code></pre>
+
+</body>
+</html>

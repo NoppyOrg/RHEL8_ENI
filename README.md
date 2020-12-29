@@ -274,7 +274,6 @@ sudo reboot
 - セカンダリENIでのセカンダリプライベートIPの追加
 
 <b>注意:</b> `+ipv4.routing-rules`の`priority`は、<b>既存のものと重複しない</b>ようにすること。また<b>既存より小さい番号</b>にすること
-```
 
 ```shell
 #add 2nd ip address to the 2nd ENI

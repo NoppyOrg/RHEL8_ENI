@@ -631,19 +631,17 @@ sudo reboot
 <li>セカンダリENIでのセカンダリプライベートIPの追加</li>
 </ul>
 <p><b>注意:</b> <code>+ipv4.routing-rules</code>の<code>priority</code>は、<b>既存のものと重複しない</b>ようにすること。また<b>既存より小さい番号</b>にすること</p>
-<pre class="hljs"><code><div>
-```shell
-#add 2nd ip address to the 2nd ENI
-SECOND_ENI_NM_CONNECTION_NAME=&quot;eth1&quot;
-SECOND_ENI_2ND_IP=&quot;10.1.133.244&quot;
-SECOND_ENI_2ND_IP_MASKBIT=&quot;19&quot;
-sudo nmcli connection modify &quot;${SECOND_ENI_NM_CONNECTION_NAME}&quot; \
+<pre class="hljs"><code><div><span class="hljs-meta">#</span><span class="bash">add 2nd ip address to the 2nd ENI</span>
+SECOND_ENI_NM_CONNECTION_NAME="eth1"
+SECOND_ENI_2ND_IP="10.1.133.244"
+SECOND_ENI_2ND_IP_MASKBIT="19"
+sudo nmcli connection modify "${SECOND_ENI_NM_CONNECTION_NAME}" \
     +ipv4.addresses ${SECOND_ENI_2ND_IP}/${SECOND_ENI_2ND_IP_MASKBIT} \
-    +ipv4.routing-rules &quot;priority 31999 from ${SECOND_ENI_2ND_IP} lookup 1000&quot;
-
-#設定の反映
-sudo nmcli connection down &quot;${SECOND_ENI_NM_CONNECTION_NAME}&quot;
-sudo nmcli connection up   &quot;${SECOND_ENI_NM_CONNECTION_NAME}&quot;
+    +ipv4.routing-rules "priority 31999 from ${SECOND_ENI_2ND_IP} lookup 1000"
+<span class="hljs-meta">
+#</span><span class="bash">設定の反映</span>
+sudo nmcli connection down "${SECOND_ENI_NM_CONNECTION_NAME}"
+sudo nmcli connection up   "${SECOND_ENI_NM_CONNECTION_NAME}"
 </div></code></pre>
 <ul>
 <li>設定の確認</li>
